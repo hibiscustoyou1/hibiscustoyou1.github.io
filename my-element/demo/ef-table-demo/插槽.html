@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://hibiscustoyou.gitee.io/code-hosting/lib/theme-chalk/index.css">
+  </head>
+  <body>
+    <div id="app">
+      <ef-table
+        :rows="tableData"
+        :cols="columns"
+        need-merge
+        children-prop="subjects"
+        :merge-span-list="mergeSpanList"
+      >
+        <template #examination-header="{ column }">
+          我是 <el-tag>{{ column.label }}</el-tag>
+          <div>我延展了 header 插槽功能。</div>
+        </template>
+
+        <template #id="{ row }">
+          我的 ID 是 <el-tag type="success">{{ row.id }}</el-tag>
+          <div>我延展了行合并单元格插槽功能。</div>
+        </template>
+
+        <template #exam3="{ row }">
+          <div>科目：{{ row.subject }}</div>
+          <div>分数：{{ row.exam3 }}</div>
+        </template>
+
+        <template #operate="{ row }">
+          <el-button @click="edit(row)" type="text">编辑</el-button>
+          <el-button @click="() => {}" type="text">删除</el-button>
+        </template>
+      </ef-table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://hibiscustoyou.gitee.io/code-hosting/lib/index.js"></script>
+
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            columns: [
+              {prop: 'id', label: 'ID', width: '150px'},
+              {prop: 'name', label: '姓名'},
+              {prop: 'subject', label: '科目'},
+              {
+                prop: 'examination',
+                label: '考试',
+                align: 'center',
+                children: [
+                  {prop: 'exam1', label: '考试1'},
+                  {prop: 'exam2', label: '考试2'},
+                  {prop: 'exam3', label: '考试3'},
+                  {prop: 'exam4', label: '考试4'},
+                ]
+              },
+              {prop: 'operate', label: '操作', denyMerge: true}
+            ],
+            tableData:  [
+              {
+                id: '10001',
+                name: '王小虎',
+                subjects: [
+                  {
+                    subject: '语文',
+                    exam1: 101.1,
+                    exam2: 101.2,
+                    exam3: 101.3,
+                    exam4: 101.4,
+                  },
+                  {
+                    subject: '数学',
+                    exam1: 102.1,
+                    exam2: 102.2,
+                    exam3: 102.3,
+                    exam4: 102.4,
+                  },
+                  {
+                    subject: '英语',
+                    exam1: 103.1,
+                    exam2: 103.2,
+                    exam3: 103.3,
+                    exam4: 103.4,
+                  },
+                ]
+              },
+              {
+                id: '10002',
+                name: '王小美',
+                subjects: [
+                  {
+                    subject: '语文',
+                    exam1: 111.1,
+                    exam2: 111.2,
+                    exam3: 111.3,
+                    exam4: 111.4,
+                  },
+                  {
+                    subject: '数学',
+                    exam1: 112.1,
+                    exam2: 112.2,
+                    exam3: 112.3,
+                    exam4: 112.4,
+                  },
+                  {
+                    subject: '英语',
+                    exam1: 113.1,
+                    exam2: 113.2,
+                    exam3: 113.3,
+                    exam4: 113.4,
+                  },
+                ]
+              },
+              {
+                id: '10003',
+                name: '王小龙',
+                subjects: [
+                  {
+                    subject: '语文',
+                    exam1: 121.1,
+                    exam2: 121.2,
+                    exam3: 121.3,
+                    exam4: 121.4,
+                  },
+                  {
+                    subject: '数学',
+                    exam1: 122.1,
+                    exam2: 122.2,
+                    exam3: 122.3,
+                    exam4: 122.4,
+                  },
+                  {
+                    subject: '英语',
+                    exam1: 123.1,
+                    exam2: 123.2,
+                    exam3: 123.3,
+                    exam4: 123.4,
+                  },
+                ]
+              },
+            ],
+            mergeSpanList: [
+              {
+                spanPosition: [0, 3],  // 王小虎 -> 考试1 -> 101.1
+                offset: [1, 0]
+              },
+              {
+                spanPosition: [4, 3],  // 王小美 -> 考试1 -> 112.1
+                offset: {
+                  left: 1,
+                  right: 1
+                }
+              },
+              {
+                spanPosition: [8, 2],  // 王小龙 -> 科目 -> 英语
+                offset: 1
+              },
+              {
+                spanPosition: [3, 0],  // 已合并单元格，失效
+                offset: [1, 0]
+              },
+            ],
+          }
+        },
+        methods: {
+          edit(row) {
+            console.log(row);
+          }
+        },
+      })
+    </script>
+  </body>
+</html>

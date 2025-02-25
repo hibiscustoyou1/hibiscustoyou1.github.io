@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://hibiscustoyou.gitee.io/code-hosting/lib/theme-chalk/index.css">
+    <style>
+      [v-cloak] { display: none; }
+    </style>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <div style="margin: 10px 0">
+        <span>高度：15px</span>
+        <ef-search v-model="searchForm" :conditions="selectOptions" :height="15"></ef-search>
+      </div>
+      <div style="margin: 10px 0">
+        <span>高度：20px</span>
+        <ef-search v-model="searchForm" :conditions="selectOptions" :height="20"></ef-search>
+      </div>
+      <div style="margin: 10px 0">
+        <span>高度：25px</span>
+        <ef-search v-model="searchForm" :conditions="selectOptions" :height="25"></ef-search>
+      </div>
+      <div style="margin: 10px 0">
+        <span>高度：30px</span>
+        <ef-search v-model="searchForm" :conditions="selectOptions" :height="30"></ef-search>
+      </div>
+      <div style="margin: 10px 0">
+        <span>高度：35px</span>
+        <ef-search v-model="searchForm" :conditions="selectOptions" :height="35"></ef-search>
+      </div>
+      <div style="margin: 10px 0">
+        <span>高度：40</span>
+        <ef-search v-model="searchForm" :conditions="selectOptions" :height="40"></ef-search>
+      </div>
+      <div style="margin: 10px 0">
+        <span>高度：45</span>
+        <ef-search v-model="searchForm" :conditions="selectOptions" :height="45"></ef-search>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://hibiscustoyou.gitee.io/code-hosting/lib/index.js"></script>
+
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            selectOptions: [
+              {
+                field: "username",
+                label: "用户名"
+              },
+              {
+                field: "email",
+                label: "邮箱"
+              },
+            ],
+            searchForm: {
+              username: '',
+              email: '',
+            }
+          }
+        },
+      })
+    </script>
+  </body>
+</html>

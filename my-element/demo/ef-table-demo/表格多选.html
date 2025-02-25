@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://hibiscustoyou.gitee.io/code-hosting/lib/theme-chalk/index.css">
+  </head>
+  <body>
+    <div id="app">
+      <ef-table 
+        ref="multipleTable"
+        :rows="tableData" 
+        :cols="columns"
+        :selected="handleSelected"
+        @selection-change="handleSelectionChange"
+      ></ef-table>
+      <div style="margin-top: 20px">
+        <el-button @click="toggleSelection([1, 3])">选中第二，四行</el-button>
+        <el-button @click="toggleSelection()">取消选择</el-button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://hibiscustoyou.gitee.io/code-hosting/lib/index.js"></script>
+
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            columns: [
+              {type: 'selection', width: 50},
+              {prop: 'date', label: '日期'},
+              {prop: 'name', label: '姓名'},
+              {prop: 'address', label: '地址'}
+            ],
+            tableData: [
+              {
+                date: '2016-05-02',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1518 弄'
+              }, 
+              {
+                date: '2016-05-04',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1517 弄'
+              }, 
+              {
+                date: '2016-05-01',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1519 弄'
+              }, 
+              {
+                date: '2016-05-03',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1516 弄'
+              }
+            ],
+            currentRow: null
+          }
+        },
+        methods: {
+          handleSelected(row) {
+            return row._index % 2 === 0;
+          },
+          toggleSelection(selections) {
+            selections && this.$refs.multipleTable.toggleRowSelection(selections);
+            !selections && this.$refs.multipleTable.clearSelection()
+          },
+          handleSelectionChange(val) {
+            console.log('selection-change', val)
+          }
+        },
+      })
+    </script>
+  </body>
+</html>

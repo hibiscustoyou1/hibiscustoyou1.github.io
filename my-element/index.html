@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://hibiscustoyou.gitee.io/code-hosting/lib/theme-chalk/index.css">
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div id="app" v-cloak>
+      <h1>code hosting</h1>
+      <div v-for="key of Object.keys(cols)" :key="key">
+        <h2>ef-{{key}} demo</h2>
+        <el-row :gutter="20">
+          <el-col :span="Math.floor(24 / spanCnt)" v-for="idx in [... new Array(spanCnt).keys()]" :key="idx">
+            <div v-for="(item, index) in cols[key][`${key}_${idx}`]" :key="item.idx">
+              <el-link type="primary" :href="item.url" :key="index">{{ item.name }}</el-link>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://hibiscustoyou.gitee.io/code-hosting/lib/index.js"></script>
+    
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            spanCnt: 4,
+            urls: {
+              search: [
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-search-demo/基础用法.html',
+                  name: '基础用法'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-search-demo/高度配置.html',
+                  name: '高度配置'
+                },
+                {url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-search-demo/插槽.html', name: '插槽'},
+                {url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-search-demo/可搜索.html', name: '可搜索'},
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-search-demo/选项禁用.html',
+                  name: '选项禁用'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-search-demo/右侧输入框类型.html',
+                  name: '右侧输入框类型'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-search-demo/整体禁用.html',
+                  name: '整体禁用'
+                },
+              ],
+              table: [
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/readme/mdnice-ef-table/index.html',
+                  name: 'README'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/列合并排序.html',
+                  name: '列合并排序'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/固定列和表头.html',
+                  name: '固定列和表头'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/带状态表格.html',
+                  name: '带状态表格'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/排序与筛选.html',
+                  name: '排序与筛选'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/多级表头.html',
+                  name: '多级表头'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/行合并.html',
+                  name: '行合并'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/树形结构与懒加载.html',
+                  name: '树形结构与懒加载'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/插槽.html',
+                  name: '插槽'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/表尾合计行.html',
+                  name: '表尾合计行'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/表格单选.html',
+                  name: '表格单选'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/表格多选.html',
+                  name: '表格多选'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/表格选择单行数据.html',
+                  name: '表格选择单行数据'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-table-demo/展开行.html',
+                  name: '展开行'
+                },
+              ],
+              form: [
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-form-demo/基本使用.html',
+                  name: '基本使用'
+                },
+                {
+                  url: 'https://hibiscustoyou.gitee.io/code-hosting/demo/ef-form-demo/表单验证.html',
+                  name: '表单验证'
+                },
+              ]
+            }
+          }
+        },
+        computed: {
+          cols() {
+            const ret = {};
+            for (let key in this.urls) {
+              ret[key] = this.getMaps(key);
+              for (let idx in this.urls[key]) {
+                ret[key][`${key}_${idx % this.spanCnt}`].push({...this.urls[key][idx], idx: idx})
+              }
+            }
+            return ret;
+          }
+        },
+        methods: {
+          getMaps(key) {
+            const ret = {};
+            for (let i in [...new Array(this.spanCnt).keys()]) {
+              ret[`${key}_${i}`] = [];
+            }
+            return ret;
+          },
+        },
+      })
+    </script>
+  </body>
+
+</html>

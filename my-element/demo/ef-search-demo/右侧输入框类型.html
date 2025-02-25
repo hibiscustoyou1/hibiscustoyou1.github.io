@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://hibiscustoyou.gitee.io/code-hosting/lib/theme-chalk/index.css">
+  </head>
+
+  <body>
+    <div id="app" v-cloak>
+      <ef-search v-model="searchForm" :conditions="selectOptions" clearable :height="22"></ef-search>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://hibiscustoyou.gitee.io/code-hosting/lib/index.js"></script>
+
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            selectOptions: [
+              {
+                field: 'username',
+                label: '用户名',
+                maxlength: 10,
+                showWordLimit: true
+              },
+              {
+                field: 'email',
+                label: '邮箱',
+                type: 'select',
+                options: [
+                  { value: '111@qq.com', label: '111@qq.com' }
+                ]
+              },
+              {
+                field: 'addr',
+                label: '地址',
+                type: 'textarea',
+                maxlength: "30",
+                showWordLimit: true
+              },
+              {
+                field: 'psw',
+                label: '密码',
+                showPassword: true
+              }
+            ],
+            searchForm: {
+              username: '',
+              email: '',
+              addr: '',
+              psw: ''
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

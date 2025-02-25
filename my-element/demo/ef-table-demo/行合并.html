@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://hibiscustoyou.gitee.io/code-hosting/lib/theme-chalk/index.css">
+  </head>
+  <body>
+    <div id="app">
+      <ef-table
+        :rows="tableData"
+        :cols="columns"
+        need-merge
+        children-prop="subjects"
+      ></ef-table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://hibiscustoyou.gitee.io/code-hosting/lib/index.js"></script>
+
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            columns: [
+              {prop: 'id', label: 'ID'},
+              {prop: 'name', label: '姓名'},
+              {prop: 'subject', label: '科目'},
+              {
+                prop: 'examination',
+                label: '考试',
+                align: 'center',
+                children: [
+                  {prop: 'exam1', label: '考试1'},
+                  {prop: 'exam2', label: '考试2'},
+                  {prop: 'exam3', label: '考试3'},
+                  {prop: 'exam4', label: '考试4'},
+                ]
+              },
+            ],
+            tableData:  [
+              {
+                id: '10001',
+                name: '王小虎',
+                subjects: [
+                  {
+                    subject: '语文',
+                    exam1: 101.1,
+                    exam2: 101.2,
+                    exam3: 101.3,
+                    exam4: 101.4,
+                  },
+                  {
+                    subject: '数学',
+                    exam1: 102.1,
+                    exam2: 102.2,
+                    exam3: 102.3,
+                    exam4: 102.4,
+                  },
+                  {
+                    subject: '英语',
+                    exam1: 103.1,
+                    exam2: 103.2,
+                    exam3: 103.3,
+                    exam4: 103.4,
+                  },
+                ]
+              },
+              {
+                id: '10002',
+                name: '王小美',
+                subjects: [
+                  {
+                    subject: '语文',
+                    exam1: 111.1,
+                    exam2: 111.2,
+                    exam3: 111.3,
+                    exam4: 111.4,
+                  },
+                  {
+                    subject: '数学',
+                    exam1: 112.1,
+                    exam2: 112.2,
+                    exam3: 112.3,
+                    exam4: 112.4,
+                  },
+                  {
+                    subject: '英语',
+                    exam1: 113.1,
+                    exam2: 113.2,
+                    exam3: 113.3,
+                    exam4: 113.4,
+                  },
+                ]
+              },
+              {
+                id: '10003',
+                name: '王小龙',
+                subjects: [
+                  {
+                    subject: '语文',
+                    exam1: 121.1,
+                    exam2: 121.2,
+                    exam3: 121.3,
+                    exam4: 121.4,
+                  },
+                  {
+                    subject: '数学',
+                    exam1: 122.1,
+                    exam2: 122.2,
+                    exam3: 122.3,
+                    exam4: 122.4,
+                  },
+                  {
+                    subject: '英语',
+                    exam1: 123.1,
+                    exam2: 123.2,
+                    exam3: 123.3,
+                    exam4: 123.4,
+                  },
+                ]
+              },
+            ]
+          }
+        },
+        methods: {
+        },
+      })
+    </script>
+  </body>
+</html>

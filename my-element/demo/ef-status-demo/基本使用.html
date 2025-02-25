@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://hibiscustoyou.gitee.io/code-hosting/lib/theme-chalk/index.css">
+    <style>
+      [v-cloak] { display: none; }
+    </style>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <ef-status status="0" type="desktop.running" label-color="#606266"></ef-status>
+      <ef-status status="0" type="desktop.running"></ef-status>
+      <ef-status status="1" type="desktop.running"></ef-status>
+      <ef-status status="2" type="desktop.running"></ef-status>
+      <ef-status status="3" type="desktop.running"></ef-status>
+      <ef-status status="4" type="desktop.running"></ef-status>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://hibiscustoyou.gitee.io/code-hosting/lib/index.js"></script>
+    
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+          
+          }
+        },
+      })
+    </script>
+  </body>
+</html>
