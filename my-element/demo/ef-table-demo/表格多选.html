@@ -63,7 +63,9 @@
             return row._index % 2 === 0;
           },
           toggleSelection(selections) {
-            selections && this.$refs.multipleTable.toggleRowSelection(selections);
+            (selections || []).forEach(row => {
+              this.$refs.multipleTable.toggleRowSelection(row)
+            });;
             !selections && this.$refs.multipleTable.clearSelection()
           },
           handleSelectionChange(val) {
